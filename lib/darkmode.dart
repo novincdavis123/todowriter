@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:todowriter/screens/Todohive.dart';
 import 'package:todowriter/screens/home.dart';
 
 class Darkmode extends StatelessWidget {
@@ -21,7 +22,7 @@ class Darkmode extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme,
         darkTheme: darkTheme,
-        home: Musify(),
+        home: Nhive(),
       ),
     );
   }
