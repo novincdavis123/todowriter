@@ -109,6 +109,9 @@ class _NhiveState extends State<Nhive> {
     return Scaffold(
       appBar: AppBar(
         leading: ElevatedButton(
+            onLongPress: () async {
+              context.locale = Locale('en', 'HI');
+            },
             onPressed: () async {
               context.locale = Locale('en', 'GB');
             },

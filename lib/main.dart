@@ -14,6 +14,7 @@ Future<void> main() async {
     supportedLocales: [
       Locale('en', 'US'),
       Locale('en', 'GB'),
+      Locale('en', 'HI'),
     ],
     path: 'assets/translations',
     saveLocale: true,
