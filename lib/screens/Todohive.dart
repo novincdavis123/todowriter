@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -8,6 +10,7 @@ class Nhive extends StatefulWidget {
 }
 
 class _NhiveState extends State<Nhive> {
+  bool Switchval = false;
   List<Map<String, dynamic>> tasks = [];
   final title = TextEditingController();
   final task = TextEditingController();
@@ -67,11 +70,13 @@ class _NhiveState extends State<Nhive> {
               children: [
                 TextField(
                   controller: title,
-                  decoration: InputDecoration(hintText: 'Title'),
+                  decoration:
+                      InputDecoration(hintText: 'Title'.tr().toString()),
                 ),
                 TextField(
                   controller: task,
-                  decoration: InputDecoration(hintText: 'Decrption'),
+                  decoration:
+                      InputDecoration(hintText: 'Decrption'.tr().toString()),
                 ),
                 SizedBox(height: 10),
                 ElevatedButton(
@@ -90,8 +95,9 @@ class _NhiveState extends State<Nhive> {
                       task.text = '';
                       Navigator.of(context).pop();
                     },
-                    child:
-                        Text(itemkey == null ? 'Create Task' : 'Update Task'))
+                    child: Text(itemkey == null
+                        ? 'Create Task'.tr().toString()
+                        : 'Update Task'.tr().toString()))
               ],
             ),
           );
@@ -102,10 +108,29 @@ class _NhiveState extends State<Nhive> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TODO'),
+        leading: ElevatedButton(
+            onPressed: () async {
+              context.locale = Locale('en', 'GB');
+            },
+            child: Text('dara')),
+        title: Text('TODO'.tr().toString().toUpperCase()),
+        actions: [
+          Switch(
+              onChanged: (bool value) {
+                setState(() {
+                  this.Switchval = value;
+                });
+                if (Switchval == false) {
+                  AdaptiveTheme.of(context).setLight();
+                } else {
+                  AdaptiveTheme.of(context).setDark();
+                }
+              },
+              value: this.Switchval),
+        ],
       ),
       body: tasks.isEmpty
-          ? Center(child: Text('NO Task'))
+          ? Center(child: Text('NO Task'.tr().toString()))
           : ListView.builder(
               itemCount: tasks.length,
               itemBuilder: (ctx, index) {
